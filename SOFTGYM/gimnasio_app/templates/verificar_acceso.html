@@ -1,0 +1,37 @@
+{% extends "base_panel.html" %}
+
+{% block titulo %}Verificar Acceso - SOFTGYM{% endblock %}
+
+{% block contenido %}
+<div class="text-center mb-4">
+    <h2 class="text-primary fw-bold">🛂 Verificación de acceso</h2>
+</div>
+
+<div class="mx-auto bg-white p-4 rounded shadow-sm border text-center" style="max-width: 500px;">
+    {% if acceso_permitido %}
+        <div class="alert alert-success fw-bold fs-5" role="alert">
+            ✅ ACCESO PERMITIDO
+        </div>
+        <p class="text-muted">La membresía de <strong>{{ cliente.nombre }}</strong> está activa hasta el <strong>{{ cliente.vencimiento.strftime('%d/%m/%Y') }}</strong>.</p>
+    {% else %}
+        <div class="alert alert-danger fw-bold fs-5" role="alert">
+            ❌ ACCESO DENEGADO
+        </div>
+        <p class="text-muted">
+            {% if cliente %}
+                La membresía de <strong>{{ cliente.nombre }}</strong> venció el <strong>{{ cliente.vencimiento.strftime('%d/%m/%Y') }}</strong>.
+            {% else %}
+                Cliente no encontrado o no pertenece a este gimnasio.
+            {% endif %}
+        </p>
+    {% endif %}
+
+    <a href="{{ url_for('panel_acceso') }}" class="btn btn-outline-secondary mt-3">↩️ Volver al panel</a>
+</div>
+<script>
+    // ⏳ Espera 4 segundos y redirige automáticamente al panel
+    setTimeout(function() {
+        window.location.href = "{{ url_for('panel_acceso') }}";
+    }, 4000);
+</script>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block titulo %}Iniciar Sesión - SOFTGYM{% endblock %}
+
+{% block contenido %}
+<div class="container mt-5" style="max-width: 400px;">
+    <h2 class="text-center text-danger fw-bold mb-4">🔐 Acceso al sistema</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <div class="mb-3">
+            <label for="username" class="form-label">Usuario</label>
+            <input type="text" class="form-control" id="username" name="username" required autofocus>
+        </div>
+
+        <div class="mb-3">
+            <label for="contrasena" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="contrasena" name="contrasena" required>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100 fw-bold">💾 Iniciar sesión</button>
+    </form>
+</div>
+{% endblock %}

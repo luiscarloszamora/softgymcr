@@ -1,0 +1,34 @@
+🧑‍💻 Lenguajes utilizados hasta el momento
+
+Lenguaje			Para qué lo usaste
+
+
+Python 🐍		Lógica del backend, manejo de rutas, conexión con base de datos
+
+HTML 🌐			Estructura de las vistas: formularios, tablas, contenido web
+
+Jinja2 🧩 		(dentro de HTML)	Plantillas con variables dinámicas y bucles en las páginas
+
+CSS vía Bootstrap 🎨	Estilo visual moderno (colores, botones, layout responsivo)
+
+
+
+
+🧰 Herramientas, librerías y tecnologías que has integrado
+
+Herramienta			Rol / Uso
+
+Flask				Framework web ligero para correr tu aplicación
+
+SQLAlchemy			ORM para crear y manipular la base de datos sin escribir SQL manualmente
+
+SQLite				Base de datos local (clientes.db) para guardar la información
+
+Bootstrap				Estilos visuales rápidos y responsivos para que se vea más profesional
+
+Visual Studio Code			Editor de código donde estás construyendo la app
+Terminal de Windows / PowerShell	Para correr y controlar tu servidor Flask
+
+Navegador web			Para acceder a la app y probar sus rutas (localhost:5000)
+
+Jinja2				Sistema de plantillas usado por Flask para renderizar HTML con variables

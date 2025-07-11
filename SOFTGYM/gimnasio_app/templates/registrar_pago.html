@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block titulo %}Registrar Pago - SOFTGYM{% endblock %}
+
+{% block contenido %}
+<div class="mb-4 text-center">
+    <h2 class="text-danger fw-bold">💳 Registrar Pago para {{ cliente.nombre }}</h2>
+</div>
+
+<form method="POST" class="mx-auto bg-white p-4 rounded shadow-sm border" style="max-width: 600px;">
+    <div class="mb-3">
+        <label class="form-label fw-bold">🏷️ Tipo de Membresía</label>
+        <select name="tipo_membresia" class="form-select" required>
+            <option value="Día">Día</option>
+            <option value="Semanal">Semanal</option>
+            <option value="Quincenal">Quincenal</option>
+            <option value="Mensual">Mensual</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label fw-bold">💰 Monto</label>
+        <input type="number" name="monto" step="0.01" class="form-control" required>
+    </div>
+
+    <div class="d-flex justify-content-between mt-4">
+        <button type="submit" class="btn btn-danger fw-bold w-100 me-2 shadow-sm">💾 Registrar Pago</button>
+        <a href="{{ url_for('lista_clientes') }}" class="btn btn-secondary w-100 ms-2">↩️ Cancelar</a>
+    </div>
+</form>
+{% endblock %}

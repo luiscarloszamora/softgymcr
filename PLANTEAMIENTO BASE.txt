@@ -1,0 +1,10 @@
+Plan maestro para construir SOFTGYM completo
+Etapa	Descripción	Objetivo
+✅ 1. Registro de clientes	Ya está listo	Capturar datos
+✅ 2. Visualización de clientes	Ya la hicimos	Ver registros en tabla
+🔜 3. Edición y eliminación de clientes	Agregar botones "Editar" y "Eliminar" en la tabla	Modificar y borrar registros
+🔜 4. Estética con Bootstrap	Integrar diseño moderno responsive	Que se vea profesional en web y móvil
+🔜 5. Validación y feedback visual	Validar campos + mostrar mensajes de éxito/error	Mejor experiencia de uso
+🔜 6. Estado de membresía (vencida o activa)	Comparar fecha de vencimiento con fecha actual	Colorear o alertar según vigencia
+🔜 7. Control de acceso con IP	Simular apertura de puerta si cliente tiene membresía activa	Automatización del ingreso físico
+🔜 8. Extras opcionales	PDF, historial, dashboard, etc.	Lo que se te ocurra para potenciarlo

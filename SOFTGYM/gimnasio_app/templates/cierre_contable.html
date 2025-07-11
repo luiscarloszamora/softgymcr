@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block titulo %}Cierre Contable{% endblock %}
+
+{% block contenido %}
+<div class="mb-4 text-center">
+    <h2 class="text-danger fw-bold">📊 Cierre Contable</h2>
+</div>
+
+<div class="card shadow-sm border mb-4">
+    <div class="card-body">
+        <h5 class="card-title text-danger fw-bold">📆 Resumen Diario - {{ hoy.strftime('%d/%m/%Y') }}</h5>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">💰 Ingresos del día: <strong>₡{{ "%.2f"|format(ingresos_hoy) }}</strong></li>
+            <li class="list-group-item">👥 Clientes que pagaron: <strong>{{ clientes_hoy }}</strong></li>
+            <li class="list-group-item">📦 Tipos de membresía vendidas:
+                <ul class="mt-2">
+                    {% for tipo, cantidad in tipos.items() %}
+                        <li>{{ tipo }}: <strong>{{ cantidad }}</strong></li>
+                    {% endfor %}
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<form method="POST" class="row g-3 mb-4">
+    <div class="col-md-5">
+        <label class="form-label fw-bold">📅 Desde</label>
+        <input type="date" name="fecha_inicio" class="form-control" required>
+    </div>
+    <div class="col-md-5">
+        <label class="form-label fw-bold">📅 Hasta</label>
+        <input type="date" name="fecha_fin" class="form-control" required>
+    </div>
+    <div class="col-md-2 d-flex align-items-end">
+        <button type="submit" class="btn btn-danger w-100">🔍 Filtrar</button>
+    </div>
+</form>
+
+{% if pagos %}
+<table class="table table-bordered table-hover text-center align-middle">
+    <thead class="table-dark">
+        <tr>
+            <th>Cliente</th>
+            <th>Fecha de Pago</th>
+            <th>Tipo</th>
+            <th>Monto</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for pago in pagos %}
+        <tr>
+            <td>{{ pago.cliente.nombre }}</td>
+            <td>{{ pago.fecha_pago.strftime('%d/%m/%Y') }}</td>
+            <td>{{ pago.tipo_membresia }}</td>
+            <td>₡{{ "%.2f"|format(pago.monto) }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="text-end fw-bold fs-5">
+    Total: ₡{{ "%.2f"|format(total) }}
+</div>
+{% endif %}
+
+<a href="{{ url_for('lista_clientes') }}" class="btn btn-secondary mt-3">↩️ Volver</a>
+{% endblock %}

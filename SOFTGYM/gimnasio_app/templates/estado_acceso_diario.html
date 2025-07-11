@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block titulo %}Estado de Acceso Diario{% endblock %}
+
+{% block contenido %}
+<h2 class="text-danger fw-bold text-center mb-4">🔒 Registro de Accesos - {{ hoy.strftime('%d/%m/%Y') }}</h2>
+
+<table class="table table-bordered table-hover text-center">
+    <thead class="table-dark">
+        <tr>
+            <th>Hora</th>
+            <th>Cliente / ID</th>
+            <th>Estado</th>
+            <th>Motivo</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for intento in accesos %}
+        <tr>
+            <td>{{ intento.hora.strftime('%H:%M:%S') }}</td>
+            <td>{{ intento.nombre_cliente }}</td>
+            <td>
+                {% if intento.estado == 'ACEPTADO' %}
+                    <span class="badge bg-success">✅ Acceso</span>
+                {% elif intento.estado == 'RECHAZADO' %}
+                    <span class="badge bg-danger">❌ Rechazado</span>
+                {% else %}
+                    <span class="badge bg-warning">⚠️ No válido</span>
+                {% endif %}
+            </td>
+            <td>{{ intento.motivo }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ url_for('panel_acceso') }}" class="btn btn-outline-secondary mt-3">↩️ Volver al panel</a>
+{% endblock %}

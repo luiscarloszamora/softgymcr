@@ -1,0 +1,54 @@
+Requerimientos_
+
+-Control de acceso priodidad
+-ver clientes
+-Movimiento de caja
+-NOTIFICACION DE QUIENES SE VENCIERON,les nottifican por whatsap proximo a vencer tambien 
+-Registro contable en pdf con movimientos y totales
+
+
+
+
+🔐 1. Control de acceso (prioridad)
+Flujo básico: Al escanear un QR/tarjeta o al introducir el usuario, se verifica si está activo o vencido.
+
+Dispositivo electroimán con IP: puedes enviar solicitudes HTTP desde tu app a la dirección IP del dispositivo (usando requests o http.client en Python) para activarlo o no.
+
+Recomendación: Aísla la lógica de conexión al electroimán en un módulo para facilitar pruebas y ajustes futuros.
+
+👥 2. Gestión de clientes
+Base de datos (SQLite para empezar, PostgreSQL en producción).
+
+CRUD (crear, ver, editar, eliminar) con formularios web.
+
+Guardar datos como: nombre, correo, fecha de inscripción, membresía, estado.
+
+💰 3. Movimiento de caja
+Registrar cada entrada de dinero (mensualidad, inscripción) y salida (compras, sueldos).
+
+Categorías para cada movimiento.
+
+Mostrar resumen diario/mensual en el panel de administración.
+
+📣 4. Notificaciones por WhatsApp
+Para clientes próximos a vencerse o ya vencidos.
+
+Puedes usar Twilio API for WhatsApp o servicios como 360Dialog (requieren cuenta de empresa en Meta).
+
+Programa una tarea diaria (con cron o apscheduler) que revise quiénes deben ser notificados y envíe el mensaje automáticamente.
+
+📄 5. Registro contable en PDF
+Reporte mensual con ingresos y egresos + totales.
+
+Usar ReportLab o WeasyPrint para generar PDFs desde templates HTML.
+
+Deja un botón tipo "Exportar PDF" en el panel.
+
+🌐 6. Tecnologías sugeridas
+Back-end: Flask o Django
+
+Front-end: HTML/CSS con Bootstrap
+
+Base de datos: SQLite (para pruebas) → PostgreSQL
+
+Autenticación: sistema de usuarios para admins

@@ -1,0 +1,81 @@
+{# 📄 Extiende la plantilla base para mantener consistencia visual en toda la app #}
+{% extends "base.html" %}
+
+{# 🧩 Define el título de la pestaña del navegador #}
+{% block titulo %}
+    Registrar Cliente - SOFTGYM
+{% endblock %}
+
+{# 🧱 Contenido principal de la página #}
+{% block contenido %}
+
+<!-- 🧾 Título de la página -->
+<div class="mb-4 text-center">
+    <h2 class="text-danger fw-bold">📋 Registro de nuevo cliente</h2>
+</div>
+
+<!-- 🔔 Muestra mensajes flash (éxito, error, advertencia) -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<!-- 📋 Formulario de registro de cliente -->
+<form method="POST" class="mx-auto bg-white p-4 rounded shadow-sm border" style="max-width: 600px;">
+
+    <!-- 🧍 Campo: Nombre del cliente -->
+    <div class="mb-3">
+        <label for="nombre" class="form-label fw-bold">🧍 Nombre completo</label>
+        <div class="input-group">
+            <span class="input-group-text">👤</span>
+            <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ej: Juan Pérez" required>
+        </div>
+    </div>
+
+    <!-- 💰 Campo: Monto del pago -->
+    <div class="mb-3">
+        <label for="monto" class="form-label fw-bold">💰 Monto a pagar</label>
+        <div class="input-group">
+            <span class="input-group-text">₡</span>
+            <input type="number" name="monto" id="monto" class="form-control" step="0.01" placeholder="Ej: 15000" required>
+        </div>
+    </div>
+
+
+    <!-- 🏷️ Campo: Tipo de membresía (selección con botones) -->
+    <div class="mb-3">
+        <label class="form-label fw-bold d-block">🏷️ Tipo de membresía</label>
+        <div class="btn-group w-100" role="group" aria-label="Tipo de membresía">
+            <input type="radio" class="btn-check" name="membresia" id="mensual" value="Mensual" required>
+            <label class="btn btn-outline-primary" for="mensual">Mensual</label>
+
+            <input type="radio" class="btn-check" name="membresia" id="quincenal" value="Quincenal">
+            <label class="btn btn-outline-primary" for="quincenal">Quincenal</label>
+
+            <input type="radio" class="btn-check" name="membresia" id="semanal" value="Semanal">
+            <label class="btn btn-outline-primary" for="semanal">Semanal</label>
+
+            <input type="radio" class="btn-check" name="membresia" id="dia" value="Día">
+            <label class="btn btn-outline-primary" for="dia">Día</label>
+        </div>
+    </div>
+
+    <!-- 💾 Botones de acción: Guardar o Volver -->
+    <div class="d-flex justify-content-between mt-4">
+        <button type="submit" class="btn btn-danger fw-bold w-100 me-2 shadow-sm">
+            💾 Guardar Cliente
+        </button>
+        <a href="{{ url_for('lista_clientes') }}" class="btn btn-secondary w-100 ms-2">
+            ↩️ Volver
+        </a>
+    </div>
+
+</form>
+
+{% endblock %}

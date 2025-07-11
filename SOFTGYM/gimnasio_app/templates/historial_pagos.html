@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block titulo %}Historial de Pagos - {{ cliente.nombre }}{% endblock %}
+
+{% block contenido %}
+<div class="mb-4 text-center">
+    <h2 class="text-danger fw-bold">📜 Historial de Pagos de {{ cliente.nombre }}</h2>
+</div>
+
+<table class="table table-bordered table-hover text-center align-middle">
+    <thead class="table-dark">
+        <tr>
+            <th>Fecha de Pago</th>
+            <th>Tipo de Membresía</th>
+            <th>Monto</th>
+            <th>Válido Hasta</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for pago in pagos %}
+        <tr>
+            <td>{{ pago.fecha_pago.strftime('%d/%m/%Y') }}</td>
+            <td>{{ pago.tipo_membresia }}</td>
+            <td>₡{{ "%.2f"|format(pago.monto) }}</td>
+            <td>{{ pago.fecha_vencimiento.strftime('%d/%m/%Y') }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="4">No hay pagos registrados.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ url_for('lista_clientes') }}" class="btn btn-secondary mt-3">↩️ Volver</a>
+{% endblock %}

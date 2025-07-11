@@ -1,0 +1,92 @@
+🔐 1. Control de Acceso
+
+[Inicio del sistema]
+      ↓
+[Escanear QR / Ingreso por teclado]
+      ↓
+[Consultar BD: ¿Cliente activo?]
+      ├── Sí ──▶ [Enviar solicitud HTTP al electroimán (IP)]
+      │            ↓
+      │       [Puerta se desbloquea] 
+      │            ↓
+      │       [Registrar acceso en BD]
+      └── No ──▶ [Mostrar mensaje: acceso denegado]
+
+
+
+
+
+👤 2. Gestión de Clientes
+[Admin ingresa al panel de clientes]
+      ↓
+[Ver listado de clientes]
+      ↓
+[Opciones: Crear nuevo | Editar | Eliminar | Buscar]
+      ↓
+[Formulario de datos: Nombre, membresía, vencimiento, etc.]
+      ↓
+[Guardar en BD]
+
+
+
+
+
+💰 3. Módulo Caja (Movimientos)
+[Admin abre módulo de caja]
+      ↓
+[Seleccionar: Ingreso / Egreso]
+      ↓
+[Formulario: monto, categoría, descripción, fecha]
+      ↓
+[Registrar en BD]
+      ↓
+[Actualizar resumen diario / mensual]
+
+
+
+
+📣 4. Notificaciones por WhatsApp
+[Tarea programada diaria (CRON)]
+      ↓
+[Consultar BD: clientes vencidos y próximos a vencer]
+      ↓
+[Generar mensaje personalizado]
+      ↓
+[Enviar vía API WhatsApp (Twilio / 360Dialog)]
+      ↓
+[Log de envíos guardado en BD]
+
+
+
+
+📄 5. Reporte Contable en PDF
+[Admin selecciona rango de fechas]
+      ↓
+[Consulta en BD: movimientos dentro del rango]
+      ↓
+[Generar resumen: total ingresos / egresos]
+      ↓
+[Renderizar HTML como PDF]
+      ↓
+[Descargar o enviar por correo]
+
+
+
+
+🧠 6. Comunicación con Electroimán (IP Local)
+[Evento: Acceso autorizado]
+      ↓
+[Obtener IP del electroimán desde config]
+      ↓
+[Enviar solicitud HTTP GET o POST con token]
+      ↓
+[Electroimán activa/desactiva el pestillo]
+
+
+
+🔒 7. Inicio de Sesión para Admins
+[Formulario login: usuario y contraseña]
+      ↓
+[Verificar credenciales en BD]
+      ├── Válido ──▶ [Entrar al panel]
+      └── Inválido ──▶ [Mostrar error]
